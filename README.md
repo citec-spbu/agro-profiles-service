@@ -1,26 +1,26 @@
-# Profiles microservice
-Микровервис профилей в "Цифровом двойнике".
+# agro-profiles-service
 
-## Разработано с помощью:
+Микросервис пользовательских профилей и настроек.
+
+## Стек
 - Python 3.11
 - FastAPI
-- PostgreSQL 
+- PostgreSQL
 - SQLAlchemy v2
-- Pydantic v2
 
-## Сборка и запуск проекта:
-    git clone https://github.com/AgroScience-Team/profiles-service.git
+## Быстрый запуск
+```bash
+docker network create agronetwork 2>/dev/null || true
+docker compose up -d --build
+```
 
-Если не создана docker-сеть `agronetwork`, то:
+Сервис доступен на `http://localhost:8002`, Swagger - `http://localhost:8002/docs`.
+База данных доступна на `localhost:5435`.
 
-    docker create network agronetwork
-    
-Выполнить миграции (при необходимости):
+## Миграции
+```bash
+docker compose run --rm migrations
+```
 
-    docker compose -f docker-compose.yml run migrations
-
-Из корневой папки проекта:
-
-    docker compose up -d 
-
-Swagger: `http://0.0.0.0:8001/docs`
+## Переменные окружения
+Конфигурация хранится в `.env` и используется всеми контейнерами сервиса.
