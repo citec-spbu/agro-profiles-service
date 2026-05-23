@@ -14,7 +14,7 @@ services:
 
   migrations:
     build: .
-    container_name: migrations-tool
+    container_name: profiles-migrations-tool
     command: sh -c "alembic upgrade head"
     depends_on:
       - db
@@ -26,6 +26,7 @@ services:
   db:
     container_name: profiles-db
     image: postgres:15
+    command: postgres -c wal_level=logical
     volumes:
       - pgdbdata:/var/lib/postgresql/data/
     env_file:
