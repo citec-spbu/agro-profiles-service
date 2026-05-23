@@ -20,8 +20,6 @@ services:
       - db
     env_file:
       - .env
-    profiles:
-      - tools
 
   db:
     container_name: profiles-db
